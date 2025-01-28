@@ -47,13 +47,13 @@ function updateDisplay() {
             <img src="eid-animation.gif" class="eid-animation" alt="Eid Mubarak">
         `;
     } else if (today >= RAMADAN_START) {
-        const ramadanDay = Math.ceil((today - 02/28/2025) / (1000 * 60 * 60 * 24));
+        const ramadanDay = Math.ceil((today - RAMADAN_START) / (1000 * 60 * 60 * 24));
         answerContent.innerHTML = `
             <h2>No 😔</h2>
             <p>Today is day ${ramadanDay} of Ramadan</p>
         `;
     } else {
-        const daysToRamadan = Math.ceil((02/28/2025 - today) / (1000 * 60 * 60 * 24));
+        const daysToRamadan = Math.ceil((RAMADAN_START - today) / (1000 * 60 * 60 * 24));
         answerContent.innerHTML = `
             <h2>Nope</h2>
             <p>${daysToRamadan} days until Ramadan</p>
