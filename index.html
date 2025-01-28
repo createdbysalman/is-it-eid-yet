@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Is it Eid yet?</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is it Eid yet?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>Is it Eid yet?</h1>
-    <div class="countdown">
-      <p id="countdown-timer">Loading...</p>
+    <div class="container">
+        <!-- Title Section -->
+        <section class="title-screen">
+            <h1>is it Eid yet?</h1>
+            <div class="scroll-prompt">▼ Scroll down ▼</div>
+        </section>
+
+        <!-- Answer Section -->
+        <section class="answer-screen">
+            <div id="answer-content">
+                <!-- Content populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Background Visualization -->
+        <section class="moon-background">
+            <div id="moon-phase"></div>
+        </section>
     </div>
-    <div class="moon-phase">
-      <img id="moon-image" src="" alt="Moon Phase">
-    </div>
-  </div>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
