@@ -1,32 +1,64 @@
+/* styles.css */
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #1a1a2e;
-  color: #fff;
-  font-family: 'Press Start 2P', cursive;
-  text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a2e;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    overflow-x: hidden;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+    height: 300vh; /* Makes page scrollable */
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
+section {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    transition: opacity 0.5s;
 }
 
-#countdown-timer {
-  font-size: 48px;
-  color: #ffcc00;
+.title-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.moon-phase img {
-  width: 150px;
-  height: 150px;
-  image-rendering: pixelated;
+.scroll-prompt {
+    position: absolute;
+    bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.answer-screen {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moon-background {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#answer-content {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.eid-animation {
+    width: 400px;
+    height: 300px;
+    image-rendering: pixelated;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
