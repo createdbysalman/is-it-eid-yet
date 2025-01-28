@@ -8,36 +8,55 @@ body {
     overflow-x: hidden;
 }
 
-.container {
-    height: 300vh;
-}
-
-section {
+.section {
     height: 100vh;
-    width: 100%;
-    position: fixed;
-    transition: opacity 0.5s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100vw;
+    position: relative;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    width: 100%;
 }
 
-.title-screen {
+/* Section-specific styles */
+.title-section {
     opacity: 1;
+    z-index: 3;
 }
 
-.answer-screen {
+.answer-section {
     opacity: 0;
+    transform: translateY(20px);
+    z-index: 2;
 }
 
-.moon-background {
+.moon-section {
     opacity: 0;
+    transform: translateY(20px);
+    z-index: 1;
+}
+
+/* Active section styling */
+.section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section.inactive-above {
+    transform: translateY(-20px);
 }
 
 .scroll-prompt {
     position: absolute;
     bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     animation: bounce 2s infinite;
     font-size: 0.8rem;
 }
