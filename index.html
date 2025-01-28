@@ -8,23 +8,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <!-- Title Section -->
-        <section class="title-screen">
+    <!-- Section 1: Title -->
+    <section class="section title-section">
+        <div class="content">
             <h1>is it Eid yet?</h1>
             <div class="scroll-prompt">▼ Scroll down ▼</div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Answer Section -->
-        <section class="answer-screen">
-            <div id="answer-content"></div>
-        </section>
+    <!-- Section 2: Answer -->
+    <section class="section answer-section">
+        <div class="content" id="answer-content"></div>
+    </section>
 
-        <!-- Moon Background -->
-        <section class="moon-background">
+    <!-- Section 3: Moon Phase -->
+    <section class="section moon-section">
+        <div class="content">
             <div id="moon-phase"></div>
-        </section>
-    </div>
+            <!-- Add more pixel art elements here -->
+        </div>
+    </section>
+
     <script src="script.js"></script>
 </body>
 </html>
