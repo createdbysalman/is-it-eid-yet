@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    height: 300vh; /* Makes page scrollable */
+    height: 300vh;
 }
 
 section {
@@ -17,48 +17,50 @@ section {
     width: 100%;
     position: fixed;
     transition: opacity 0.5s;
-}
-
-.title-screen {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.title-screen {
+    opacity: 1;
+}
+
+.answer-screen {
+    opacity: 0;
+}
+
+.moon-background {
+    opacity: 0;
 }
 
 .scroll-prompt {
     position: absolute;
     bottom: 20px;
     animation: bounce 2s infinite;
-}
-
-.answer-screen {
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.moon-background {
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 0.8rem;
 }
 
 #answer-content {
-    text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    padding: 20px;
 }
 
-.eid-animation {
-    width: 400px;
-    height: 300px;
+#moon-phase img {
+    width: 48px;
+    height: 48px;
     image-rendering: pixelated;
+    margin: 10px;
 }
 
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+}
+
+.eid-animation {
+    width: 200px;
+    height: 200px;
+    image-rendering: pixelated;
 }
