@@ -1,40 +1,39 @@
 // script.js
-// CONFIGURATION (UPDATE THESE DATES YEARLY)
+// Configuration (Update annually)
 const RAMADAN_START = new Date('2025-02-28');
-const EID_DATE = new Date('2025-03-30'); // Example Eid date
+const EID_DATE = new Date('2025-03-30');
+const MOON_PHASES = ['moon-phase-0.png', 'moon-phase-1.png', ..., 'moon-phase-7.png'];
 
-// Moon phase images (update with your uploaded filenames)
-const MOON_PHASES = [
-    'moon-phase-0.png',
-    'moon-phase-1.png',
-    'moon-phase-2.png',
-    'moon-phase-3.png',
-    'moon-phase-4.png',
-    'moon-phase-5.png',
-    'moon-phase-6.png',
-    'moon-phase-7.png'
-];
+// Section Management
+const sections = document.querySelectorAll('.section');
+let currentSection = 0;
+
+function updateSections() {
+    sections.forEach((section, index) => {
+        section.classList.remove('active', 'inactive-above');
+        if (index === currentSection) {
+            section.classList.add('active');
+        } else if (index < currentSection) {
+            section.classList.add('inactive-above');
+        }
+    });
+}
 
 // Scroll Handling
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const title = document.querySelector('.title-screen');
-    const answer = document.querySelector('.answer-screen');
-    const moon = document.querySelector('.moon-background');
-
-    // Vertical scroll detection
-    if (scrollY > lastScroll) { // Scrolling down
-        title.style.opacity = Math.max(1 - scrollY/50, 0);
-        answer.style.opacity = Math.min((scrollY - 50)/100, 1);
-        moon.style.opacity = Math.min((scrollY - 150)/100, 1);
-    } else { // Scrolling up
-        title.style.opacity = Math.min(1, (50 - scrollY)/50);
-        answer.style.opacity = Math.min(1, (150 - scrollY)/100);
-        moon.style.opacity = Math.min(1, (250 - scrollY)/100);
+let isScrolling = false;
+window.addEventListener('wheel', (e) => {
+    if (isScrolling) return;
+    isScrolling = true;
+    
+    if (e.deltaY > 0 && currentSection < sections.length - 1) {
+        currentSection++;
+    } else if (e.deltaY < 0 && currentSection > 0) {
+        currentSection--;
     }
-    lastScroll = scrollY;
-});
+    
+    updateSections();
+    setTimeout(() => { isScrolling = false; }, 1000);
+}, { passive: true });
 
 // Date Calculations
 function updateDisplay() {
@@ -69,5 +68,6 @@ function updateDisplay() {
 }
 
 // Initial setup
-setInterval(updateDisplay, 86400000); // Update daily
+setInterval(updateDisplay, 86400000);
 updateDisplay();
+updateSections();
