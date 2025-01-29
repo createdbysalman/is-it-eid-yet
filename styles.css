@@ -17,6 +17,13 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    scroll-snap-align: start; /* Ensures sections snap into place */
+}
+
+.container {
+    scroll-snap-type: y mandatory; /* Enables smooth snap scrolling */
+    overflow-y: scroll;
+    height: 100vh;
 }
 
 #answer-content {
@@ -31,8 +38,7 @@ body {
 }
 
 #moon-phase img {
-    width: 192px;
-    height: 192px;
-    image-rendering: pixelated;
+    width: 200px; /* Increased size */
+    height: 200px; /* Increased size */
     margin: 10px;
 }
