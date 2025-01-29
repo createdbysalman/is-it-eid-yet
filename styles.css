@@ -13,23 +13,26 @@ body {
     height: 100vh;
     width: 100vw;
     position: relative;
-    transition: opacity 0.5s;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.content {
     text-align: center;
 }
 
 #answer-content {
     font-size: 1.5rem;
+    padding: 20px;
+}
+
+.eid-animation {
+    width: 200px;
+    height: 200px;
+    image-rendering: pixelated;
 }
 
 #moon-phase img {
-    width: 96px;
-    height: 96px;
+    width: 192px;
+    height: 192px;
     image-rendering: pixelated;
     margin: 10px;
 }
