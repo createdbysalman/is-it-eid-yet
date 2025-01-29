@@ -33,13 +33,13 @@ function updateAnswer() {
         // It's Ramadan but not Eid
         const ramadanDay = Math.ceil((now - RAMADAN_START) / (1000 * 60 * 60 * 24));
         answerContent.innerHTML = `
-            <h2>Come on, it's only day ${ramadanDay} of Ramadan.</h2>
+            <h1>Come on, it's only day ${ramadanDay} of Ramadan.</h1>
         `;
     } else {
         // Not Ramadan yet
         const daysToRamadan = Math.ceil((RAMADAN_START - now) / (1000 * 60 * 60 * 24));
         answerContent.innerHTML = `
-            <h2>Have some sabr, Ramadan starts in ${daysToRamadan} days.</h2>
+            <h1>Have some sabr, Ramadan starts in ${daysToRamadan} days.</h1>
         `;
     }
 }
