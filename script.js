@@ -2,6 +2,8 @@
 // Configuration
 const RAMADAN_START = new Date('2025-02-28');
 const EID_DATE = new Date('2025-03-30');
+
+// Moon phase images (12 phases)
 const MOON_PHASES = [
     'new-moon.png',          // 0
     'waxing-crescent-1.png', // 1
@@ -17,54 +19,49 @@ const MOON_PHASES = [
     'waning-crescent-2.png'  // 11
 ];
 
-// Accurate Moon Phase Calculation
-function getMoonPhase(date) {
-    const refNewMoon = new Date(Date.UTC(2024, 0, 11, 11, 57));
-    const synodicMonth = 29.53058867;
-    const diffDays = (date - refNewMoon) / (1000 * 60 * 60 * 24);
-    const moonAge = (diffDays % synodicMonth + synodicMonth) % synodicMonth;
-    return Math.floor(moonAge / (synodicMonth / 12)) % 12;
-}
-
-// Scroll Handling
-let currentSection = 0;
-let isScrolling = false;
-
-window.addEventListener('wheel', (e) => {
-    if (isScrolling) return;
-    isScrolling = true;
-    
-    const direction = e.deltaY > 0 ? 1 : -1;
-    currentSection = Math.min(Math.max(currentSection + direction, 0), 2);
-    
-    window.scrollTo({
-        top: currentSection * window.innerHeight,
-        behavior: 'smooth'
-    });
-    
-    setTimeout(() => { isScrolling = false; }, 800);
-});
-
-// Date Calculations
-function updateDisplay() {
+// Update Section 2 Answer
+function updateAnswer() {
     const now = new Date();
     const answerContent = document.getElementById('answer-content');
-    
-    if (now >= EID_DATE) {
-        answerContent.innerHTML = `<img src="eid-animation.gif" class="eid-animation" alt="Eid Mubarak">`;
-    } else if (now >= RAMADAN_START) {
-        const ramadanDay = Math.ceil((now - RAMADAN_START) / (1000 * 60 * 60 * 24));
-        answerContent.innerHTML = `${ramadanDay}`;
-    } else {
-        const daysToRamadan = Math.ceil((RAMADAN_START - now) / (1000 * 60 * 60 * 24));
-        answerContent.innerHTML = `${daysToRamadan}`;
-    }
 
-    // Update moon phase
-    const phaseIndex = getMoonPhase(now);
-    document.getElementById('moon-phase').innerHTML = `<img src="${MOON_PHASES[phaseIndex]}" alt="Moon Phase">`;
+    if (now >= EID_DATE) {
+        // Eid has arrived!
+        answerContent.innerHTML = `
+            <img src="eid-animation.gif" class="eid-animation" alt="Eid Mubarak">
+        `;
+    } else if (now >= RAMADAN_START) {
+        // It's Ramadan but not Eid
+        const ramadanDay = Math.ceil((now - RAMADAN_START) / (1000 * 60 * 60 * 24));
+        answerContent.innerHTML = `
+            <h2>Come on, it's only day ${ramadanDay} of Ramadan.</h2>
+        `;
+    } else {
+        // Not Ramadan yet
+        const daysToRamadan = Math.ceil((RAMADAN_START - now) / (1000 * 60 * 60 * 24));
+        answerContent.innerHTML = `
+            <h2>Have some sabr, Ramadan starts in ${daysToRamadan} days.</h2>
+        `;
+    }
+}
+
+// Moon Phase Calculation
+function updateMoonPhase() {
+    const now = new Date();
+    const refNewMoon = new Date(Date.UTC(2024, 0, 11, 11, 57)); // Reference new moon
+    const synodicMonth = 29.53058867; // Lunar cycle length
+    const diffDays = (now - refNewMoon) / (1000 * 60 * 60 * 24);
+    const moonAge = (diffDays % synodicMonth + synodicMonth) % synodicMonth;
+    const phaseIndex = Math.floor(moonAge / (synodicMonth / 12)) % 12;
+
+    document.getElementById('moon-phase').innerHTML = `
+        <img src="${MOON_PHASES[phaseIndex]}" alt="Moon Phase">
+    `;
 }
 
 // Initial setup
-setInterval(updateDisplay, 3600000); // Update hourly
-updateDisplay();
+setInterval(() => {
+    updateAnswer();
+    updateMoonPhase();
+}, 3600000); // Update hourly
+updateAnswer();
+updateMoonPhase();
