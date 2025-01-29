@@ -26,9 +26,15 @@ body {
     height: 100vh;
 }
 
-#answer-content {
-    font-size: 1rem;
-    padding: 20px;
+/* Ensure all text uses h1 size */
+h1 {
+    font-size: 2rem; /* Adjust this value as needed */
+    margin: 0;
+    padding: 0;
+}
+
+#answer-content h1 {
+    font-size: 2rem; /* Same as h1 */
 }
 
 .eid-animation {
@@ -40,5 +46,6 @@ body {
 #moon-phase img {
     width: 200px; /* Increased size */
     height: 200px; /* Increased size */
+    image-rendering: pixelated;
     margin: 10px;
 }
